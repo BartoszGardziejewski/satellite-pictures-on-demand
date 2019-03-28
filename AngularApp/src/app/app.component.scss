@@ -1,5 +1,24 @@
 .container{
   display: grid;
-  grid-template-columns: 130px auto;
+  grid-template-rows: 100px auto;
   height: 100%;
+}
+
+.mainPage{
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  background-image: url("https://www.nasa.gov/sites/default/files/images/557885main_iss027e036716_full.jpg");
+  background-size: cover;
+
+  .sourceName{
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+    a{
+      font-weight: lighter;
+      font-size: 10px;
+      color: #000000;
+    }
+  }
 }

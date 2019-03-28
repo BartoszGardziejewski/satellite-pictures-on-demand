@@ -1,7 +1,13 @@
-<div class="rightBar">
-  <h2><a routerLink="/">Satellite app</a></h2>
-  <ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/offer">Offer</a></li>
-  </ul>
+<div class="topBar">
+
+  <div class="topMenu">
+    <ul>
+      <li><a routerLink="/" [class.currentPage]="currentUrl == '/'" >Home</a></li>
+      <li><a routerLink="/offer" [class.currentPage]="currentUrl == '/offer'">Offer</a></li>
+      <li *ngIf="data.getToke() === ''" ><a routerLink="/login" [class.currentPage]="currentUrl == '/login'">Login</a></li>
+      <li *ngIf="data.getToke() === ''" ><a routerLink="/register" [class.currentPage]="currentUrl == '/register'">Register</a></li>
+      <li *ngIf="data.getToke() !== ''" ><a routerLink="/subscriptions" [class.currentPage]="currentUrl == '/subscriptions'">Subscriptions</a></li>
+    </ul>
+  </div>
+
 </div>

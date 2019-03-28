@@ -1,0 +1,9 @@
+<div class="mainBackground">
+  <h1> Token {{data.getToke()}}</h1>
+  <p>
+    {{subscriptionsJSON}}
+  </p>
+  <ul>
+    <li *ngFor="let subscripion of subscriptions"> {{subscripion.title}}</li>
+  </ul>
+</div>

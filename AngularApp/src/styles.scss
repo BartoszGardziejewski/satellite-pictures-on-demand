@@ -3,6 +3,45 @@ body{
   padding: 0;
   margin: 0;
   height: 100vh;
+  overflow: hidden;
+
+
 }
 
+a{
+  text-decoration: none;
+}
 
+.mainBackground{
+  align-content: center;
+  text-align: center;
+  background-color: rgba(250,250,250,0.9);
+  margin: 40px 20% 0 20%;
+  border-radius: 20px;
+  padding: 20px 40px;
+  box-shadow: 0 0 6px #EEEEEE;
+  backdrop-filter: blur(20px);
+}
+
+.pageHeader{
+  border-bottom: #22DDDD 3px solid;
+  border-radius: 20px;
+  padding-bottom: 5px;
+
+  font-size: 40px;
+  text-align: center;
+  color: #222222;
+}
+
+.textFrame{
+  margin-top: 25px;
+  border-bottom: #22DDDD 3px solid;
+  border-top: #22DDDD 3px solid;
+  border-radius: 20px;
+
+  padding: 5px 15px;
+
+  p{
+    font-size: 30px;
+  }
+}

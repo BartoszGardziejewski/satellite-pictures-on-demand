@@ -1,49 +1,55 @@
 
-
-a{
-  text-decoration: none;
-}
-
-.rightBar{
+.topBar{
   padding: 10px;
   margin: 0;
   height: 100%;
-  background-color: #222;
+  background-color: #000;
 
   a{
-    color: #DDD;
+    color: #22DDDD;
     text-transform: uppercase;
   }
 
-  h2{
-    text-align: center;
-    margin: 0;
-    a{
-      font-size: 20px;
-      font-weight: bold;
+  .topMenu{
+    border-bottom: #EEEEEE 2px solid;
+    border-radius: 20px;
+    box-shadow: 0 5px 8px #555555;
+
+    ul{
+      display: flex;
+      margin-top: 10px;
+      justify-content: center;
+      li{
+        float: left;
+        list-style: none;
+        margin-right: 30px;
+        text-align: center;
+        a{
+          margin: 0 1px;
+          padding: 5px 10px;
+          font-size: 23px;
+        }
+        a:hover{
+          margin: 0;
+          border-left: #EEEEEE 1px solid;
+          border-right: #EEEEEE 1px solid;
+          border-radius: 10px;
+
+          color: #FFFFFF;
+          text-shadow: 0 0 4px #FFFFFF;
+        }
+
+        .currentPage{
+          margin: 0;
+          border-left: #EEEEEE 1px solid;
+          border-right: #EEEEEE 1px solid;
+          border-radius: 10px;
+
+          color: #FFFFFF;
+          text-shadow: 0 0 4px #FFFFFF;
+        }
+      }
     }
   }
 
-  ul{
-    border-top: #DDD 1px dashed;
-    margin-top: 40px;
-    padding-top: 15px;
-    padding-left: 5%;
-    align-content: center;
-    li{
-      background-color: #22BBBB;
-      width: 90%;
-      padding: 10px;
-      list-style: none;
-      margin-top: 25px;
-      a{
-        font-size: 18px;
-      }
-      a:hover{
-        color: #222222;
-        background-color: #22BBBB;
-        padding-left: 5px;
-      }
-    }
-  }
 }

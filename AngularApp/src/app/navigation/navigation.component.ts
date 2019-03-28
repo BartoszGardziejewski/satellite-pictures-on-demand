@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  currentUrl: string;
+
+  constructor(private router: Router, private data: DataService) {
+    router.events.subscribe((navi: NavigationEnd ) => this.bindOnNavigation(navi));
+  }
+
+  bindOnNavigation(navi) {
+    if (navi.url !== undefined && navi.url !== null) {
+      this.currentUrl = navi.url;
+    }
+  }
 
   ngOnInit() {
   }

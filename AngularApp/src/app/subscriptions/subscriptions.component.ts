@@ -15,14 +15,14 @@ export class SubscriptionsComponent implements OnInit {
   constructor(private router: Router, private data: DataService) { }
 
   ngOnInit() {
-    if(this.data.getToke() === ''){
+    if (this.data.getToke() === ''){
       this.router.navigateByUrl('/');
+    } else {
+      this.data.getSubscriptions().subscribe(data => {
+        this.subscriptions = data.subscriptions;
+        this.subscriptionsJSON = JSON.stringify(data);
+      });
     }
-
-    this.data.getSubscriptions().subscribe(data => {
-      this.subscriptions = data.subscriptions;
-      this.subscriptionsJSON = JSON.stringify(data);
-    });
   }
 
 }

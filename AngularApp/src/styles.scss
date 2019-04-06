@@ -4,8 +4,7 @@ body{
   margin: 0;
   height: 100vh;
   overflow: hidden;
-
-
+  font-family: 'Comfortaa', cursive;
 }
 
 a{
@@ -21,6 +20,14 @@ a{
   padding: 20px 40px;
   box-shadow: 0 0 6px #EEEEEE;
   backdrop-filter: blur(20px);
+  animation-name: enter;
+  animation-duration: 500ms;
+  animation-iteration-count: initial;
+}
+
+@keyframes enter {
+  0%   {margin-top: 10px; opacity: 0}
+  100%   {margin-top: 40px; opacity: 1}
 }
 
 .pageHeader{

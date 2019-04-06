@@ -7,7 +7,9 @@
       <li *ngIf="data.getToke() === ''" ><a routerLink="/login" [class.currentPage]="currentUrl == '/login'">Login</a></li>
       <li *ngIf="data.getToke() === ''" ><a routerLink="/register" [class.currentPage]="currentUrl == '/register'">Register</a></li>
       <li *ngIf="data.getToke() !== ''" ><a routerLink="/subscriptions" [class.currentPage]="currentUrl == '/subscriptions'">Subscriptions</a></li>
+      <li *ngIf="data.getToke() !== ''" ><a routerLink="/logout" [class.currentPage]="currentUrl == '/logout'">Logout</a></li>
     </ul>
   </div>
 
 </div>
+

@@ -12,6 +12,7 @@ import { OfferComponent } from './offer/offer.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import {FormsModule} from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {FormsModule} from '@angular/forms';
     RegisterComponent,
     OfferComponent,
     SubscriptionsComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

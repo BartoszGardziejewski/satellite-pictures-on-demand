@@ -1,0 +1,5 @@
+.env
+.idea
+testing.py
+db.sqlite3
+**/__pycache__/*

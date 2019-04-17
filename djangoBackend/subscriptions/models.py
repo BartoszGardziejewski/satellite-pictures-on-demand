@@ -27,6 +27,7 @@ class Subscription(models.Model):
     )
     end_date = models.DateField(
         blank=True,
+        null=True,
     )
 
     def __str__(self):

@@ -12,3 +12,7 @@ this application will allow client to subscribe in order to receive satellite pi
   * Rest API allowing communication with Satellite
     * Mocked satellite service sending data to Rest API
   * Front-end web page getting data from Rest API 
+
+# Backend documentation
+
+ - To see full backend documentation endpoints visit `/docs` after run the application.

@@ -51,11 +51,16 @@
           animation-iteration-count: initial;
         }
 
+        a:focus{
+          outline-color: #22DDDD;
+        }
+
         .currentPage{
           padding: 4px 6px;
           border-right: #DDDDDD 3px solid;
           border-left: #DDDDDD 3px solid;
           border-radius: 15px;
+          color: #22DDDD;
         }
       }
     }

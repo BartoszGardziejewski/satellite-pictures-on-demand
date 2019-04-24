@@ -1,0 +1,29 @@
+.subscriptionFrame{
+  background-color: #222222;
+
+  color: #DDDDDD;
+
+  margin: 5px;
+  padding: 10px;
+
+  border-left: #44FFFF 5px solid;
+  border-right: #44FFFF 5px solid;
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-columns: 100px auto;
+}
+
+.photoContainer{
+  width: 100%;
+
+  overflow: hidden;
+
+  img{
+    height: 100px;
+    width: 100px;
+
+    vertical-align: middle;
+    display: inline-block;
+  }
+}

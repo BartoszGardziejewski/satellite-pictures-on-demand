@@ -17,8 +17,17 @@ export class LoginComponent implements OnInit {
   onClickSubmit(loginData) {
     const username = loginData.value.username;
     const password = loginData.value.password;
-    this.data.setToken(username + password);
-    this.router.navigateByUrl('/subscriptions');
+
+    this.data.login(username, password).subscribe(data => {
+      console.log(data.token);
+      this.performLogin(data.token);
+    });
   }
 
+  performLogin(token) {
+    if (token !== '') {
+      this.data.setToken(token);
+      this.router.navigateByUrl('/subscriptions');
+    }
+  }
 }

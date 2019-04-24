@@ -52,3 +52,56 @@ a{
     font-size: 30px;
   }
 }
+
+
+.customButton{
+  background-color: #22DDDD;
+  padding: 4px 20px;
+
+  font-size: 20px;
+  border-radius: 20px;
+  box-shadow: none;
+  border: #DDDDDD 2px solid;
+  color: #222222;
+
+  cursor: pointer;
+}
+.customButton:hover, .customButton:focus{
+  outline: none;
+  background-color: #44FFFF;
+
+  animation-name: buttonHover;
+  animation-duration: 250ms;
+  animation-iteration-count: initial;
+}
+
+@keyframes buttonHover {
+  0%   {
+    background-color: #22DDDD;
+  }
+  100%   {
+    background-color: #44FFFF;
+  }
+}
+
+.customForm{
+  padding: 10px 0;
+
+  input{
+    margin-bottom: 10px;
+  }
+
+  .textInput{
+
+    border-radius: 20px;
+
+    border: #DDDDDD 2px solid;
+
+    padding: 10px 5px;
+
+  }
+  .textInput:focus{
+    outline: none;
+    border: #44FFFF 2px solid;
+  }
+}

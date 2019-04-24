@@ -13,6 +13,7 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { SubscriptionComponent } from './subscription/subscription.component';
 import {FormsModule} from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
+import { SubsciptionThumbnailComponent } from './subsciption-thumbnail/subsciption-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './logout/logout.component';
     OfferComponent,
     SubscriptionsComponent,
     SubscriptionComponent,
-    LogoutComponent
+    LogoutComponent,
+    SubsciptionThumbnailComponent
   ],
   imports: [
     BrowserModule,

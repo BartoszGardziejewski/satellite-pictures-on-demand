@@ -15,6 +15,8 @@ export class LogoutComponent implements OnInit {
   }
 
   logout = () => {
+    this.data.logout().subscribe( (data) => {
+    });
     this.data.setToken('');
     this.router.navigateByUrl('/');
   }

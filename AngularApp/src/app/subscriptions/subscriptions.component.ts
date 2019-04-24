@@ -15,7 +15,8 @@ export class SubscriptionsComponent implements OnInit {
   constructor(private router: Router, private data: DataService) { }
 
   ngOnInit() {
-    if (this.data.getToke() === ''){
+    console.log(this.data.getToke());
+    if (this.data.getToke() === '') {
       this.router.navigateByUrl('/');
     } else {
       this.data.getSubscriptions().subscribe(data => {

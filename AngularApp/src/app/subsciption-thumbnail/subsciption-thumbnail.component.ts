@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Subscription} from '../data.service';
 
 @Component({
   selector: 'app-subsciption-thumbnail',
@@ -8,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class SubsciptionThumbnailComponent implements OnInit {
 
-  @Input() subscription: Object;
+  @Input() subscription: Subscription;
 
   constructor(private router: Router) { }
 

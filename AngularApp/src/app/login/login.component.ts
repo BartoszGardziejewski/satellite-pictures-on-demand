@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private data: DataService,private router: Router) { }
+  constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
     const password = loginData.value.password;
 
     this.data.login(username, password).subscribe(data => {
-      console.log(data.token);
-      this.performLogin(data.token);
+      this.performLogin(data.key);
     });
   }
 

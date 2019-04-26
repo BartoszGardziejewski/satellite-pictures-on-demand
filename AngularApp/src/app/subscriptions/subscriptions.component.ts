@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../data.service';
+import {DataService, Subscription} from '../data.service';
 import {Router} from '@angular/router';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'app-subscriptions',
@@ -15,15 +16,30 @@ export class SubscriptionsComponent implements OnInit {
   constructor(private router: Router, private data: DataService) { }
 
   ngOnInit() {
-    console.log(this.data.getToke());
     if (this.data.getToke() === '') {
       this.router.navigateByUrl('/');
     } else {
       this.data.getSubscriptions().subscribe(data => {
-        this.subscriptions = data.subscriptions;
+        console.log( JSON.stringify(data) );
+        this.subscriptions = data ;
         this.subscriptionsJSON = JSON.stringify(data);
       });
     }
+  }
+
+  addSubscription() {
+
+    const subscription: Subscription = {
+      id: null,
+      name: 'testSubscription',
+      coordinates: '40,22 : 80,34',
+      periodicity: '10',
+      end_date: '2020-05-22'
+    };
+
+    this.data.addSubscription(subscription).subscribe( data => {
+      console.log(data);
+    });
   }
 
 }

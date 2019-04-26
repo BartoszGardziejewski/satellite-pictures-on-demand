@@ -15,11 +15,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onClickSubmit = (formData) => {
-    console.log(formData.value.username);
     if ( formData.value.password === formData.value.repassword ) {
-      this.dataService.register(formData.value.username, formData.value.password).subscribe((data) => {
-        if (data.token !== undefined && data.token !== null ) {
-          this.performRegister(data.token);
+      this.dataService.register(
+        formData.value.username, formData.value.password, formData.value.email, formData.value.firstName, formData.value.lastName)
+        .subscribe((data) => {
+        if (data.key !== undefined && data.key !== null ) {
+          this.performRegister(data.key);
         }
       });
     }

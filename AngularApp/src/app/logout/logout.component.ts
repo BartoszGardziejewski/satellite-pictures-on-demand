@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../data.service';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'app-logout',
@@ -16,8 +17,9 @@ export class LogoutComponent implements OnInit {
 
   logout = () => {
     this.data.logout().subscribe( (data) => {
+      Cookie.delete('csrftoken');
+      this.data.setToken('');
     });
-    this.data.setToken('');
     this.router.navigateByUrl('/');
   }
 

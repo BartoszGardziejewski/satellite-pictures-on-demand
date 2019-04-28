@@ -9,6 +9,6 @@ from users.serializers import UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, IsAdminUser)
     queryset = User.objects.all()
     serializer_class = UserSerializer

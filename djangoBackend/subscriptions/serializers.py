@@ -12,4 +12,4 @@ class SubscriptionSerializerDetail(serializers.ModelSerializer):
 class SubscriptionSerializerList(serializers.ModelSerializer):
     class Meta:
         model = models.Subscription
-        fields = ('id', 'name', 'coordinates')
+        fields = ('id', 'name', 'coordinates', 'end_date')

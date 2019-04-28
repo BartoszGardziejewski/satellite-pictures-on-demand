@@ -35,5 +35,5 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             queryset = Subscription.objects.filter(user_id=request.user, pk=pk)[0]
         except IndexError:
             return JsonResponse({"message": "This is not your subscription."}, status=status.HTTP_401_UNAUTHORIZED)
-        serializer = SubscriptionSerializerList(queryset, many=False)
+        serializer = SubscriptionSerializerDetail(queryset, many=False)
         return JsonResponse(serializer.data, safe=False)

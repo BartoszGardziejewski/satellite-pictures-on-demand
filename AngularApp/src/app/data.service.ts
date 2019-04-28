@@ -38,7 +38,6 @@ export class DataService {
   }
 
   getToke() {
-    //return this.token;
     if ( Cookie.get('csrftoken') === null || Cookie.get('csrftoken') === undefined) {
       return  '';
     }
@@ -76,14 +75,10 @@ export class DataService {
       'Authorization': 'Token ' + this.token
     });
 
-    console.log(id);
     return this.http.get<Subscription>(this.urlBase + 'subscriptions/' + id, { headers: headers });
   }
 
   addSubscription(subscription) {
-    console.log(Cookie.get('csrftoken'));
-    console.log(this.token);
-
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
       'Authorization': 'Token ' + this.token
@@ -105,6 +100,14 @@ export class DataService {
       { params: params ,  headers: headers });
   }
 
+  removeSubscription(id) {
+    const headers = new HttpHeaders({
+      'X-CSRFTOKEN': Cookie.get('csrftoken'),
+      'Authorization': 'Token ' + this.token
+    });
+    return this.http.delete(this.urlBase + 'subscriptions/' + id + '/', {headers: headers});
+  }
+
   login(username, password) {
 
     this.username = username;
@@ -116,21 +119,31 @@ export class DataService {
 
     this.username = username;
 
-    let params = new HttpParams();
-
-    params = params.append('username', username);
-    params = params.append('email', email);
-    params = params.append('password1', password);
-    params = params.append('password2', password);
-    params = params.append('first_name', first_name);
-    params = params.append('last_name', last_name);
-
-    return this.http.get<Token>(this.urlBase + 'register/', { params: params });
+    return this.http.post<Token>(this.urlBase + 'auth/registration/', {
+      'username': username,
+      'email': email,
+      'password1': password,
+      'password2': password,
+      'first_name': first_name,
+      'last_name': last_name
+    },
+      {} );
   }
 
-  getPhotos(subscriptionId) {
-    console.log('photos kurwa dla '+subscriptionId);
+  changePassword(newPassword,oldPassword) {
+    const headers = new HttpHeaders({
+      'X-CSRFTOKEN': Cookie.get('csrftoken'),
+      'Authorization': 'Token ' + this.token
+    });
 
+    return this.http.post(this.urlBase + 'auth/password/change/', {
+      new_password1: newPassword,
+      new_password2: newPassword
+    },
+      {headers: headers});
+}
+
+  getPhotos(subscriptionId) {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
       'Authorization': 'Token ' + this.token

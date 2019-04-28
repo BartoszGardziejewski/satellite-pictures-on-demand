@@ -1,10 +1,9 @@
 <div class="mainBackground">
   <h1> Welcome {{data.getUser()}}</h1>
-  <br/>
   <ul>
-    <li (click)="addSubscription()"><h3>ADD SUBSCRIPTION</h3></li>
+    <li (click)="addSubscription()"  class="customButton"><h4 style="margin: 5px">ADD SUBSCRIPTION</h4></li>
   </ul>
-  <ul>
+  <ul class="contentContainer">
     <li *ngFor="let subscripion of subscriptions"> <app-subsciption-thumbnail [subscription]="subscripion"></app-subsciption-thumbnail> </li>
   </ul>
 </div>

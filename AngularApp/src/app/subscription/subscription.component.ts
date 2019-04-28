@@ -32,6 +32,12 @@ export class SubscriptionComponent implements OnInit {
     });
   }
 
+  removeSubscription() {
+    this.dataService.removeSubscription(this.subscription.id).subscribe(data => {
+      this.router.navigate(['/subscriptions']);
+    });
+  }
+
   backToSubscription() {
     this.router.navigate(['/subscriptions']);
   }

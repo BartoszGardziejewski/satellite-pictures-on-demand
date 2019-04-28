@@ -28,18 +28,7 @@ export class SubscriptionsComponent implements OnInit {
   }
 
   addSubscription() {
-
-    const subscription: Subscription = {
-      id: null,
-      name: 'testSubscription',
-      coordinates: '40,22 : 80,34',
-      periodicity: '10',
-      end_date: '2020-05-22'
-    };
-
-    this.data.addSubscription(subscription).subscribe( data => {
-      console.log(data);
-    });
+    this.router.navigateByUrl('/addSubscription');
   }
 
 }

@@ -14,6 +14,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import {FormsModule} from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { SubsciptionThumbnailComponent } from './subsciption-thumbnail/subsciption-thumbnail.component';
+import { AddSubscriptionComponent } from './add-subscription/add-subscription.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SubsciptionThumbnailComponent } from './subsciption-thumbnail/subscipti
     SubscriptionsComponent,
     SubscriptionComponent,
     LogoutComponent,
-    SubsciptionThumbnailComponent
+    SubsciptionThumbnailComponent,
+    AddSubscriptionComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,9 @@
   <p>
     valid to {{subscription.end_date}}
   </p>
+  <div class="customButton" (click)="removeSubscription()">
+    remove Subscription
+  </div>
 
   <div class="contentContainer">
   <ul *ngIf="photos">

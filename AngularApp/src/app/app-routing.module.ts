@@ -5,8 +5,9 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {OfferComponent} from "./offer/offer.component";
 import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
-import {LogoutComponent} from './logout/logout.component';
 import {SubscriptionComponent} from './subscription/subscription.component';
+import {AddSubscriptionComponent} from './add-subscription/add-subscription.component';
+import {AccountComponent} from './account/account.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'subscriptions', component: SubscriptionsComponent},
-  { path: 'logout', component: LogoutComponent},
-  { path: 'subscription/:id', component: SubscriptionComponent}
+  { path: 'account', component: AccountComponent},
+  { path: 'subscription/:id', component: SubscriptionComponent},
+  { path: 'addSubscription', component: AddSubscriptionComponent}
 ];
 
 @NgModule({

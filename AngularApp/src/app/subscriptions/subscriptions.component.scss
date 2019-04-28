@@ -5,4 +5,10 @@ ul{
     margin-top: 30px;
     text-align: center;
   }
+
+}
+
+.contentContainer{
+  overflow-y: scroll;
+  max-height: 50vh;
 }

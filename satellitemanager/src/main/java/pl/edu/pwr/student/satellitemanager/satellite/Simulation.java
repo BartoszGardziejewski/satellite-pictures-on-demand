@@ -16,7 +16,7 @@ public class Simulation {
 
     public Date calculateTrip(Position newPosition) throws ParseException {
 
-        double time = calculateDistance(SatelliteController.currentPosition, newPosition) / 1000 / speed;
+        double time = calculateDistance(Init.currentPosition, newPosition) / 1000 / speed;
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
         Calendar c = Calendar.getInstance();
@@ -74,7 +74,7 @@ public class Simulation {
 
     void simulateTrip(Double longitude, Double latitude) {
 
-        double remain = calculateDistance(SatelliteController.currentPosition, new Position(longitude, latitude));
+        double remain = calculateDistance(Init.currentPosition, new Position(longitude, latitude));
 
 
     }

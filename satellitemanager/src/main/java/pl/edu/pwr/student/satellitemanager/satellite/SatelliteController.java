@@ -1,12 +1,15 @@
 package pl.edu.pwr.student.satellitemanager.satellite;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Wrapper;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -14,24 +17,28 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class SatelliteController {
 
-    public static Position currentPosition;
+//    public static Position currentPosition;
+    @Autowired
     private final Simulation simulation;
+    @Autowired
     private final Service service;
 
-    @GetMapping("satellite/manager/position")
+    @GetMapping("satellite/manager/position/now")
     public Position getCurrentPosition() {
 
-        return currentPosition;
+        return Init.currentPosition;
     }
 
     @GetMapping("satellite/manager/position")
     public Date setCurrentPosition(@RequestParam Double longitude,
                                    @RequestParam Double latitude) throws ParseException {
 
-        currentPosition.setLongitude(longitude);
-        currentPosition.setLatitude(latitude);
+        Date arrDate = simulation.calculateTrip(new Position(longitude, latitude));
 
-        return simulation.calculateTrip(new Position(longitude, latitude));
+        Init.currentPosition.setLongitude(longitude);
+        Init.currentPosition.setLatitude(latitude);
+
+        return arrDate;
     }
 
     @GetMapping(value = "satellite/manager/image/now", produces = MediaType.IMAGE_PNG_VALUE)
@@ -43,8 +50,9 @@ public class SatelliteController {
 
     @GetMapping("satellite/manager/image")
     public @ResponseBody ImageDaysWrapper getImageAtPosition(@RequestParam Double longitude,
-                                                   @RequestParam Double latitude,
-                                                   HttpServletResponse response) throws IOException, ParseException {
+                                                             @RequestParam Double latitude,
+                                                             HttpServletResponse response)
+                                                             throws IOException, ParseException {
 
         Date arrivalAt = simulation.calculateTrip(new Position(longitude, latitude));
         long daysToArrive = simulation.countDays(arrivalAt);

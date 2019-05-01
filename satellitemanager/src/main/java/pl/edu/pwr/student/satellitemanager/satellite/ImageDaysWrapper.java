@@ -3,15 +3,14 @@ package pl.edu.pwr.student.satellitemanager.satellite;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 @Getter
-@Setter
+@Service
 @AllArgsConstructor
 @NoArgsConstructor
-class Position {
+class ImageDaysWrapper {
 
-    private Double longitude;
-    private Double latitude;
+    private int days;
+    private byte[] img;
 }
-

@@ -13,7 +13,7 @@ public class Service {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/" +
-                SatelliteController.currentPosition.getLongitude() + "," + SatelliteController.currentPosition.getLatitude() +
+                Init.currentPosition.getLongitude() + "," + Init.currentPosition.getLatitude() +
                 "10?mapSize=100,600&format=png&mapMetadata=0&" +
                 "key=" + bing_api_key;
 

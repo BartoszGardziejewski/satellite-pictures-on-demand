@@ -25,10 +25,10 @@ public class ImageController {
 
     @GetMapping("satellite/api/image")
     public @ResponseBody byte[] getImageAtPosition(@RequestParam Double longitude,
-                                                   @RequestParam Double magnitude,
+                                                   @RequestParam Double latitude,
                                                    HttpServletResponse response) throws IOException{
 
-        return this.imageService.getImageAtPosition(new Position(longitude, magnitude));
+        return this.imageService.getImageAtPosition(new Position(longitude, latitude));
     }
 
     private byte[] processByteArray(Byte[] imageFromService){

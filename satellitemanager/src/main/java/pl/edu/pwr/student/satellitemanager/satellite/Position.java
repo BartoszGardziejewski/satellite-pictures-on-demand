@@ -1,16 +1,17 @@
-package pl.edu.pwr.student.satelliteserver.api.position;
+package pl.edu.pwr.student.satellitemanager.satellite;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Position {
 
     private Double longitude;
     private Double latitude;
 }
+

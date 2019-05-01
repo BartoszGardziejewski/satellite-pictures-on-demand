@@ -12,7 +12,6 @@ import { OfferComponent } from './offer/offer.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import {FormsModule} from '@angular/forms';
-import { LogoutComponent } from './logout/logout.component';
 import { SubsciptionThumbnailComponent } from './subsciption-thumbnail/subsciption-thumbnail.component';
 import { AddSubscriptionComponent } from './add-subscription/add-subscription.component';
 import { AccountComponent } from './account/account.component';
@@ -27,7 +26,6 @@ import { AccountComponent } from './account/account.component';
     OfferComponent,
     SubscriptionsComponent,
     SubscriptionComponent,
-    LogoutComponent,
     SubsciptionThumbnailComponent,
     AddSubscriptionComponent,
     AccountComponent

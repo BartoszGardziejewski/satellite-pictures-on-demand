@@ -75,6 +75,15 @@ a{
   animation-iteration-count: initial;
 }
 
+.removeButton{
+  background-color: #DD4444;
+}
+.removeButton:hover, .removeButton:focus{
+   background-color: #DD6666;
+
+  animation-name: none;
+ }
+
 @keyframes buttonHover {
   0%   {
     background-color: #22DDDD;

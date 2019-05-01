@@ -8,7 +8,7 @@ import pl.edu.pwr.student.satelliteserver.api.position.Position;
 public class ImageService implements ImageServiceAPI {
 
     private final String bing_api_key = "AmafUcgdnpmARanaKddoI44s8GCD6fPSI6eh_Sk5fvKQ3lxCnclNJwjOmSVlAyIh";
-    
+
     @Override
     public byte[] getSatelliteImage() {
 

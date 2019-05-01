@@ -1,4 +1,4 @@
-package pl.edu.pwr.student.satelliteserver.api;
+package pl.edu.pwr.student.satelliteserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

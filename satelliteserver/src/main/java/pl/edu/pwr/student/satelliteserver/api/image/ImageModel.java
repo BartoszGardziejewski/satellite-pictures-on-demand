@@ -1,4 +1,4 @@
-package pl.edu.pwr.student.satelliteserver.model;
+package pl.edu.pwr.student.satelliteserver.api.image;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

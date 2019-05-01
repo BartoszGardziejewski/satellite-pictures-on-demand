@@ -1,9 +1,7 @@
-package pl.edu.pwr.student.satelliteserver.controller;
+package pl.edu.pwr.student.satelliteserver.api.position;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pwr.student.satelliteserver.model.Position;
-import pl.edu.pwr.student.satelliteserver.service.PositionServiceAPI;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package pl.edu.pwr.student.satelliteserver.service;
+package pl.edu.pwr.student.satelliteserver.api.image;
 
-import pl.edu.pwr.student.satelliteserver.model.Position;
+import pl.edu.pwr.student.satelliteserver.api.position.Position;
 
 public interface ImageServiceAPI {
 

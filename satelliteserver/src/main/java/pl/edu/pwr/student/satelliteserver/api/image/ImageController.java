@@ -1,4 +1,4 @@
-package pl.edu.pwr.student.satelliteserver.controller;
+package pl.edu.pwr.student.satelliteserver.api.image;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.edu.pwr.student.satelliteserver.model.Position;
-import pl.edu.pwr.student.satelliteserver.service.ImageServiceAPI;
+import pl.edu.pwr.student.satelliteserver.api.position.Position;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

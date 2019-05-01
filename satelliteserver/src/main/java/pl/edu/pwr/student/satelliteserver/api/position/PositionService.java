@@ -1,7 +1,6 @@
-package pl.edu.pwr.student.satelliteserver.service;
+package pl.edu.pwr.student.satelliteserver.api.position;
 
 import org.springframework.stereotype.Service;
-import pl.edu.pwr.student.satelliteserver.model.Position;
 
 import java.util.Date;
 

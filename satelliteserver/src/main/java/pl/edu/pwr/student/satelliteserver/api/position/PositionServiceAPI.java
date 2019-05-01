@@ -1,6 +1,6 @@
-package pl.edu.pwr.student.satelliteserver.service;
+package pl.edu.pwr.student.satelliteserver.api.position;
 
-import pl.edu.pwr.student.satelliteserver.model.Position;
+import pl.edu.pwr.student.satelliteserver.api.position.Position;
 
 import java.util.Date;
 

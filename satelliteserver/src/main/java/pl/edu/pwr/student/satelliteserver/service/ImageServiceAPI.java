@@ -1,11 +1,10 @@
 package pl.edu.pwr.student.satelliteserver.service;
 
-import pl.edu.pwr.student.satelliteserver.model.ImageModel;
 import pl.edu.pwr.student.satelliteserver.model.Position;
 
 public interface ImageServiceAPI {
 
-    ImageModel getSatelliteImage();
+    byte[] getSatelliteImage();
 
-    ImageModel getImageAtPosition(Position position);
+    byte[] getImageAtPosition(Position position);
 }

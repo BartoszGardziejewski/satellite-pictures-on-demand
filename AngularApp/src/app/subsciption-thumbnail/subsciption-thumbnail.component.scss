@@ -14,6 +14,14 @@
   grid-template-columns: 100px auto;
 }
 
+.subscriptionFrame:hover {
+  cursor: pointer;
+
+  border-left: #88FFFF 6px solid;
+  border-right: #88FFFF 6px solid;
+
+}
+
 .photoContainer{
   width: 100%;
 

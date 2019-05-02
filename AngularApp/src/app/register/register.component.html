@@ -1,12 +1,24 @@
 <div class="mainBackground">
+  <h3>CREATE ACCOUNT</h3>
+  <div class="infoBox">
+    <div *ngIf="badUser" >
+      <p *ngFor="let value of usernameErrors"> {{value}} </p>
+    </div>
+    <div *ngIf="badEmail" >
+      <p *ngFor="let value of emailErrors"> {{value}} </p>
+    </div>
+    <div *ngIf="badPasswords" >
+      <p *ngFor="let value of passwordErrors"> {{value}} </p>
+    </div>
+  </div>
   <form class="customForm" #formData = "ngForm" (ngSubmit) = "onClickSubmit(formData)" >
-    <input class="textInput" type = "text" name = "username" placeholder = "username" ngModel>
+    <input class="textInput" (focus)="badUser=false" [class.wrongInput]="badUser" type = "text" name = "username" placeholder = "username" ngModel>
     <br/>
-    <input class="textInput" type = "password" name = "password" placeholder = "password" ngModel>
+    <input class="textInput" (focus)="badPasswords=false" [class.wrongInput]="badPasswords" type = "password" name = "password" placeholder = "password" ngModel>
     <br/>
-    <input class="textInput" type = "password" name = "repassword" placeholder = "reenter password" ngModel>
+    <input class="textInput" (focus)="badPasswords=false" [class.wrongInput]="badPasswords" type = "password" name = "repassword" placeholder = "reenter password" ngModel>
     <br/>
-    <input class="textInput" type = "text" name = "email" placeholder = "email" ngModel>
+    <input class="textInput" (focus)="badEmail=false" [class.wrongInput]="badEmail" type = "text" name = "email" placeholder = "email" ngModel>
     <br/>
     <input class="textInput" type = "text" name = "firstName" placeholder = "first_name" ngModel>
     <br/>

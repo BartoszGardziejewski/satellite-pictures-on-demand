@@ -1,12 +1,17 @@
 <div class="mainBackground">
 
   <h4> change password </h4>
+  <div class="infoBox">
+    <p [hidden]="!badPasswords" > {{error_text}} </p>
+    <p [hidden]="!actionComplete" > {{info_text}} </p>
+    <div *ngIf="badPasswords" >
+      <p *ngFor="let value of passwordErrors"> {{value}} </p>
+    </div>
+  </div>
   <form class="customForm" #formData = "ngForm" (ngSubmit) = "changePassword(formData)" >
-    <input class="textInput" type = "password" name = "oldpassword" placeholder = "old password" ngModel>
+    <input class="textInput" type = "password" (focus)="badPasswords = false" [class.wrongInput]="badPasswords" name = "newpassword" placeholder = "new password" ngModel>
     <br/>
-    <input class="textInput" type = "password" name = "newpassword" placeholder = "new password" ngModel>
-    <br/>
-    <input class="textInput" type = "password" name = "renewpassword" placeholder = "reenter new password" ngModel>
+    <input class="textInput" type = "password" (focus)="badPasswords = false" [class.wrongInput]="badPasswords" name = "renewpassword" placeholder = "reenter new password" ngModel>
     <br/>
     <input type = "submit" value = "change password" class="customButton">
   </form>

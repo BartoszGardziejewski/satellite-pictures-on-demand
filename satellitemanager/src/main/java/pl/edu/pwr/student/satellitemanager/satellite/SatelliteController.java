@@ -17,7 +17,6 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class SatelliteController {
 
-//    public static Position currentPosition;
     @Autowired
     private final Simulation simulation;
     @Autowired
@@ -34,9 +33,7 @@ public class SatelliteController {
                                    @RequestParam Double longitude) throws ParseException {
 
         Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
-
-        Init.currentPosition.setLatitude(latitude);
-        Init.currentPosition.setLongitude(longitude);
+        simulation.simulateTrip(latitude, longitude);
 
         return arrDate;
     }
@@ -54,15 +51,13 @@ public class SatelliteController {
                                                              HttpServletResponse response)
                                                              throws IOException, ParseException {
 
-        Date arrivalAt = simulation.calculateTrip(new Position(latitude, longitude));
-        long daysToArrive = simulation.countDays(arrivalAt);
+        Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
 
-        if(daysToArrive < 1){
-            return new ImageDaysWrapper(0, this.service.getCurrentImage());
+        if(simulation.countDays(arrDate) < 1){
+            return new ImageDaysWrapper(new Date(), this.service.getImageAtPosition(latitude, longitude));
         }
         else
-            this.simulation.simulateTrip(longitude, latitude);
-            return new ImageDaysWrapper((int) daysToArrive, null);
+            this.simulation.simulateTrip(latitude, longitude);
+            return new ImageDaysWrapper(arrDate, null);
     }
-
 }

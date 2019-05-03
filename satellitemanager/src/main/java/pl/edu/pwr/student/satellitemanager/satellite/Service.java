@@ -13,19 +13,19 @@ public class Service {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/" +
-                Init.currentPosition.getLongitude() + "," + Init.currentPosition.getLatitude() +
+                Init.currentPosition.getLatitude() + "," + Init.currentPosition.getLongitude() +
                 "10?mapSize=100,600&format=png&mapMetadata=0&" +
                 "key=" + bing_api_key;
 
         return restTemplate.getForObject(url, byte[].class);
     }
 
-    byte[] getImageAtPosition(Double longitude, Double latitude){
+    byte[] getImageAtPosition(Double latitude, Double longitude){
 
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/" +
-                longitude + "," + latitude +
+                latitude + "," + longitude +
                 "10?mapSize=100,600&format=png&mapMetadata=0&" +
                 "key=" + bing_api_key;
 

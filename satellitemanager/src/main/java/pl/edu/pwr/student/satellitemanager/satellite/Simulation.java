@@ -72,9 +72,9 @@ public class Simulation {
         return Math.sqrt(distance);
     }
 
-    void simulateTrip(Double longitude, Double latitude) {
+    void simulateTrip(Double latitude, Double longitude) {
 
-        double remain = calculateDistance(Init.currentPosition, new Position(longitude, latitude));
+        double remain = calculateDistance(Init.currentPosition, new Position(latitude, longitude));
 
 
     }

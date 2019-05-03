@@ -18,14 +18,14 @@ public class ImageService implements ImageServiceAPI {
     }
 
     @Override
-    public byte[] getImageAtPosition(Position position) {
+    public ImageDaysWrapper getImageAtPosition(Position position) {
 
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "satellite/manager/image?longitude=" + position.getLatitude() +
                 "&latitude=" + position.getLongitude();
 
-        return restTemplate.getForObject(url, byte[].class);
+        return restTemplate.getForObject(url, ImageDaysWrapper.class);
     }
 }
 

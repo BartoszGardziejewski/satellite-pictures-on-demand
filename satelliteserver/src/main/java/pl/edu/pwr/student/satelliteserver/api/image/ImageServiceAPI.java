@@ -6,5 +6,5 @@ public interface ImageServiceAPI {
 
     byte[] getSatelliteImage();
 
-    byte[] getImageAtPosition(Position position);
+    ImageDaysWrapper getImageAtPosition(Position position);
 }

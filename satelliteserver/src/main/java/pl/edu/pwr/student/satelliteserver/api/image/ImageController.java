@@ -24,7 +24,7 @@ public class ImageController {
     }
 
     @GetMapping("satellite/api/image")
-    public @ResponseBody byte[] getImageAtPosition(@RequestParam Double latitude,
+    public @ResponseBody ImageDaysWrapper getImageAtPosition(@RequestParam Double latitude,
                                                    @RequestParam Double longitude,
                                                    HttpServletResponse response) throws IOException{
 

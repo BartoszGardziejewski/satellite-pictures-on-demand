@@ -13,7 +13,7 @@ public class PositionService implements PositionServiceAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "localhost:9009/satellite/manager/position";
+        String url = "http://127.0.0.1:9009/satellite/manager/position/now";
 
         return restTemplate.getForObject(url, Position.class);
     }
@@ -23,8 +23,8 @@ public class PositionService implements PositionServiceAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "localhost:9009/satellite/manager/position?longitude=" + position.getLatitude() +
-                "&latitude=" + position.getLongitude();
+        String url = "http://127.0.0.1:9009/satellite/manager/position?latitude=" + position.getLatitude() +
+                "&longitude=" + position.getLongitude();
 
         return restTemplate.getForObject(url, Date.class);
     }

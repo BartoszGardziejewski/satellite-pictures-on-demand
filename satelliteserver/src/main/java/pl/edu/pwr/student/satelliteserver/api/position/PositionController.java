@@ -12,13 +12,13 @@ public class PositionController {
     private final PositionServiceAPI positionService;
 
 
-    @GetMapping("satellite/api/position")
+    @GetMapping("satellite/api/position/now")
     public Position getCurrentPosition() {
 
         return this.positionService.getSatellitePosition();
     }
 
-    @PostMapping("satellite/api/position")
+    @GetMapping("satellite/api/position")
     public Date setCurrentPosition(@RequestParam Double latitude,
                                    @RequestParam Double longitude){
 

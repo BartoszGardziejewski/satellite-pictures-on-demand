@@ -12,7 +12,7 @@ public class ImageService implements ImageServiceAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "localhost:9009/satellite/manager/image/now";
+        String url = "http://127.0.0.1:9009/satellite/manager/image/now";
 
         return restTemplate.getForObject(url, byte[].class);
     }
@@ -22,8 +22,8 @@ public class ImageService implements ImageServiceAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "satellite/manager/image?longitude=" + position.getLatitude() +
-                "&latitude=" + position.getLongitude();
+        String url = "http://127.0.0.1:9009/satellite/manager/image?latitude=" + position.getLatitude() +
+                "&longitude=" + position.getLongitude();
 
         return restTemplate.getForObject(url, ImageDaysWrapper.class);
     }

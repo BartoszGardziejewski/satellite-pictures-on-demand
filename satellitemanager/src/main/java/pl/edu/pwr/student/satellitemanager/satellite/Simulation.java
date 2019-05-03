@@ -9,7 +9,8 @@ import java.util.Date;
 @Component
 public class Simulation {
 
-    private final double speed = 28000.0;
+    private final double speed = 11300.0;
+    private final double height = 35786.0;
 
     Date calculateTrip(Position newPosition) throws ParseException {
 
@@ -32,26 +33,21 @@ public class Simulation {
     private static double calculateDistance(Position startingPosition, Position endingPosition){
 
         final int R = 6371; // Radius of the earth
+        double height = 35786.0;
 
-        double distance = 0.5 - Math.cos((endingPosition.getLatitude() - startingPosition.getLongitude()) * Math.PI) / 2 +
-                Math.cos(startingPosition.getLatitude() * Math.PI) * Math.cos(endingPosition.getLatitude() * Math.PI) *
-                        (1 - Math.cos((endingPosition.getLongitude() - endingPosition.getLatitude()) * Math.PI)) / 2;
+        double latDistance = Math.toRadians(endingPosition.getLatitude() - startingPosition.getLatitude());
+        double lonDistance = Math.toRadians(endingPosition.getLongitude() - startingPosition.getLongitude());
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(startingPosition.getLatitude())) * Math.cos(Math.toRadians(endingPosition.getLatitude()))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
 
-        distance = distance * 2 * R * Math.asin(Math.sqrt(distance));
 
+        distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
-//
-//        double latDistance = Math.toRadians(endingPosition.getLatitude() - startingPosition.getLatitude());
-//        double lonDistance = Math.toRadians(endingPosition.getLongitude() - startingPosition.getLongitude());
-//        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-//                + Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-//        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//        double distance = R * c * 1000;
-//
-//        distance = Math.pow(distance, 2);
+        return Math.sqrt(distance);
 
-//        return Math.sqrt(distance); // km
-        return distance;
     }
 
     public static double calculateDistance(Position startingPosition, Position endingPosition,
@@ -77,18 +73,17 @@ public class Simulation {
     void simulateTrip(Double latitude, Double longitude) {
 
         final double[] startingDistance = {calculateDistance(Init.currentPosition, new Position(latitude, longitude))};
+        double startingX = Init.currentPosition.getLatitude();
+        double startingY = Init.currentPosition.getLongitude();
 
         Thread t = new Thread(() -> {
 
-            while (Thread.interrupted()){
+            while (!Thread.interrupted()){
 
                 startingDistance[0] -= speed;
 
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Init.currentPosition.setLatitude(Init.currentPosition.getLatitude() + distanceX(startingDistance[0], startingX, latitude));
+                Init.currentPosition.setLongitude(Init.currentPosition.getLongitude() - distanceX(startingDistance[0], startingY, longitude));
 
                 if(startingDistance[0] <= 0){
 
@@ -99,9 +94,25 @@ public class Simulation {
                     return;
                 }
 
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
         t.start();
 
     }
+
+    private Double distanceX(double distance, double startingX, double endingX) {
+
+        double s = speed;
+        double rate = s / distance;
+        double x_distance = endingX - startingX;
+
+        return startingX + x_distance * rate;
+    }
+
 }

@@ -13,6 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 class ImageDaysWrapper {
 
-    private Date days;
+    private Date date;
     private byte[] img;
 }

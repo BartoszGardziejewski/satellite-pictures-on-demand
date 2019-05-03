@@ -28,6 +28,11 @@ public class ImageController {
                                                              @RequestParam Double longitude,
                                                              HttpServletResponse response) throws IOException{
 
+        if(latitude > 90.0 || latitude < -90.0 || longitude > 180.0 || longitude < -180.0){
+            response.setStatus( HttpServletResponse.SC_BAD_REQUEST  );
+            return null;
+        }
+
         return this.imageService.getImageAtPosition(new Position(latitude, longitude));
     }
 

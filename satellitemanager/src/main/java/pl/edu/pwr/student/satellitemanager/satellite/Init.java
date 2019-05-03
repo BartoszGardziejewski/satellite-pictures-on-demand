@@ -18,7 +18,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
     private void initData() {
         Init.currentPosition = new Position();
-        Init.currentPosition.setLongitude(125.0);
+        Init.currentPosition.setLongitude(125.4);
         Init.currentPosition.setLatitude(19.0);
     }
 }

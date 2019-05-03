@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Getter
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImageDaysWrapper {
 
-    private int days;
+    private Date date;
     private byte[] img;
 }

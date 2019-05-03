@@ -13,7 +13,7 @@ public class Simulation {
 
     Date calculateTrip(Position newPosition) throws ParseException {
 
-        double time = calculateDistance(Init.currentPosition, newPosition) / 1000 / speed; // h
+        double time = calculateDistance(Init.currentPosition, newPosition) / speed; // h
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
@@ -33,16 +33,25 @@ public class Simulation {
 
         final int R = 6371; // Radius of the earth
 
-        double latDistance = Math.toRadians(endingPosition.getLatitude() - startingPosition.getLatitude());
-        double lonDistance = Math.toRadians(endingPosition.getLongitude() - startingPosition.getLongitude());
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000;
+        double distance = 0.5 - Math.cos((endingPosition.getLatitude() - startingPosition.getLongitude()) * Math.PI) / 2 +
+                Math.cos(startingPosition.getLatitude() * Math.PI) * Math.cos(endingPosition.getLatitude() * Math.PI) *
+                        (1 - Math.cos((endingPosition.getLongitude() - endingPosition.getLatitude()) * Math.PI)) / 2;
 
-        distance = Math.pow(distance, 2);
+        distance = distance * 2 * R * Math.asin(Math.sqrt(distance));
 
-        return Math.sqrt(distance); // km
+
+//
+//        double latDistance = Math.toRadians(endingPosition.getLatitude() - startingPosition.getLatitude());
+//        double lonDistance = Math.toRadians(endingPosition.getLongitude() - startingPosition.getLongitude());
+//        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+//                + Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+//        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//        double distance = R * c * 1000;
+//
+//        distance = Math.pow(distance, 2);
+
+//        return Math.sqrt(distance); // km
+        return distance;
     }
 
     public static double calculateDistance(Position startingPosition, Position endingPosition,

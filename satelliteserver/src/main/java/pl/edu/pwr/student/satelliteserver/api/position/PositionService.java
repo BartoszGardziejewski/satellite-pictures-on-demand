@@ -24,7 +24,7 @@ public class PositionService implements PositionServiceAPI {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "localhost:9009/satellite/manager/position?longitude=" + position.getLatitude() +
-                "&latitude=" + position.getLatitude();
+                "&latitude=" + position.getLongitude();
 
         return restTemplate.getForObject(url, Date.class);
     }

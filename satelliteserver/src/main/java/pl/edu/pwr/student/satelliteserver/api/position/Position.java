@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class Position {
 
-    private Double longitude;
     private Double latitude;
+    private Double longitude;
 }

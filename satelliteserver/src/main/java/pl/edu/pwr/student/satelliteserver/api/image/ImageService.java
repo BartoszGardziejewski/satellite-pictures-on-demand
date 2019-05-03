@@ -22,8 +22,8 @@ public class ImageService implements ImageServiceAPI {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "satellite/manager/image?longitude=" + position.getLongitude() +
-                "&latitude=" + position.getLatitude();
+        String url = "satellite/manager/image?longitude=" + position.getLatitude() +
+                "&latitude=" + position.getLongitude();
 
         return restTemplate.getForObject(url, byte[].class);
     }

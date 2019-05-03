@@ -19,10 +19,10 @@ public class PositionController {
     }
 
     @PostMapping("satellite/api/position")
-    public Date setCurrentPosition(@RequestParam Double longitude,
-                                   @RequestParam Double latitude){
+    public Date setCurrentPosition(@RequestParam Double latitude,
+                                   @RequestParam Double longitude){
 
-        return this.positionService.setSatellitePosition(new Position(longitude, latitude));
+        return this.positionService.setSatellitePosition(new Position(latitude, longitude));
     }
 
 }

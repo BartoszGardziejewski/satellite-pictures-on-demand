@@ -30,13 +30,13 @@ public class SatelliteController {
     }
 
     @GetMapping("satellite/manager/position")
-    public Date setCurrentPosition(@RequestParam Double longitude,
-                                   @RequestParam Double latitude) throws ParseException {
+    public Date setCurrentPosition(@RequestParam Double latitude,
+                                   @RequestParam Double longitude) throws ParseException {
 
-        Date arrDate = simulation.calculateTrip(new Position(longitude, latitude));
+        Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
 
-        Init.currentPosition.setLongitude(longitude);
         Init.currentPosition.setLatitude(latitude);
+        Init.currentPosition.setLongitude(longitude);
 
         return arrDate;
     }
@@ -49,12 +49,12 @@ public class SatelliteController {
     }
 
     @GetMapping("satellite/manager/image")
-    public @ResponseBody ImageDaysWrapper getImageAtPosition(@RequestParam Double longitude,
-                                                             @RequestParam Double latitude,
+    public @ResponseBody ImageDaysWrapper getImageAtPosition(@RequestParam Double latitude,
+                                                             @RequestParam Double longitude,
                                                              HttpServletResponse response)
                                                              throws IOException, ParseException {
 
-        Date arrivalAt = simulation.calculateTrip(new Position(longitude, latitude));
+        Date arrivalAt = simulation.calculateTrip(new Position(latitude, longitude));
         long daysToArrive = simulation.countDays(arrivalAt);
 
         if(daysToArrive < 1){

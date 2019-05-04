@@ -1,0 +1,13 @@
+<div class="mainBackground">
+  <h3>LOGIN</h3>
+  <div class="infoBox">
+    <p [hidden]="!badParameters" > {{error_text}} </p>
+  </div>
+  <form class="customForm" #formData = "ngForm" (ngSubmit) = "onClickSubmit(formData)" >
+    <input class="textInput" (focus)="cleanError()" [class.wrongInput]="badParameters" type = "text" name = "username" placeholder = "username" ngModel>
+    <br/>
+    <input class="textInput" (focus)="cleanError()" [class.wrongInput]="badParameters" type = "password" name = "password" placeholder = "password" ngModel>
+    <br/>
+    <input type = "submit" value = "login" class="customButton">
+  </form>
+</div>

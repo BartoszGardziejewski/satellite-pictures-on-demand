@@ -1,0 +1,20 @@
+<div class="mainBackground"  *ngIf="subscription">
+  <div class="backButton" (click)="backToSubscription()"> Back </div>
+  <h2>{{subscription.name}}</h2>
+  <p>
+    location: {{subscription.coordinates}}
+    <br/>
+    valid to: {{subscription.end_date}}
+  </p>
+  <div class="customButton removeButton" (click)="removeSubscription()">
+    remove Subscription
+  </div>
+
+  <div class="contentContainer">
+  <ul *ngIf="photos">
+    <li *ngFor="let photo of photos"> <img src={{photo.image_file_ref_path}} > <p>{{photo.date}}</p> </li>
+  </ul>
+  </div>
+
+</div>
+

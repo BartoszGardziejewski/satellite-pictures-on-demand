@@ -1,0 +1,20 @@
+<div class="topBar">
+
+  <div class="topMenu">
+    <ul>
+      <ul></ul>
+      <ul>
+        <li><a routerLink="/" [class.currentPage]="currentUrl == '/'" >Home</a></li>
+        <li><a routerLink="/offer" [class.currentPage]="currentUrl == '/offer'">Offer</a></li>
+        <li *ngIf="data.getToke() !== ''" ><a routerLink="/subscriptions" [class.currentPage]="currentUrl == '/subscriptions'">Subscriptions</a></li>
+      </ul>
+      <ul>
+        <li *ngIf="data.getToke() === ''" ><a routerLink="/login" [class.currentPage]="currentUrl == '/login'">Login</a></li>
+        <li *ngIf="data.getToke() === ''" ><a routerLink="/register" [class.currentPage]="currentUrl == '/register'" class="diffButton">Register</a></li>
+        <li *ngIf="data.getToke() !== ''" ><a routerLink="/account" [class.currentPage]="currentUrl == '/account'">Account</a></li>
+      </ul>
+    </ul>
+  </div>
+
+</div>
+

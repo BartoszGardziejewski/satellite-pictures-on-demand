@@ -1,0 +1,87 @@
+
+.topBar{
+  padding: 10px;
+  margin: 0;
+  height: 100%;
+  background-color: #000;
+
+  .topMenu{
+    margin: 10px;
+    border-bottom: #DDDDDD 3px solid;
+    border-radius: 20px;
+
+    a{
+      color: #DDD;
+      text-transform: uppercase;
+    }
+
+    h2{
+      text-align: center;
+      margin: 0;
+      a{
+        cursor: default;
+        color: #22DDDD;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: 20% 60% 25%;
+
+      ul {
+        padding: 0 10px;
+        display: flex;
+        margin-top: 30px;
+        justify-content: center;
+
+        li {
+          float: left;
+          list-style: none;
+          margin-right: 30px;
+          text-align: center;
+
+          .diffButton {
+          }
+          .diffButton:hover {
+          }
+
+          a {
+            font-size: 23px;
+            padding: 4px 9px;
+          }
+
+          a:hover {
+            padding: 4px 6px;
+            border-right: #DDDDDD 3px solid;
+            border-left: #DDDDDD 3px solid;
+            border-radius: 15px;
+            color: #FFFFFF;
+
+            animation-name: hover;
+            animation-duration: 500ms;
+            animation-iteration-count: initial;
+          }
+
+          a:focus {
+            outline-color: #22DDDD;
+          }
+
+          .currentPage {
+            padding: 4px 6px;
+            border-right: #DDDDDD 3px solid;
+            border-left: #DDDDDD 3px solid;
+            border-radius: 15px;
+            color: #22DDDD;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes hover {
+  0%   {border-radius: 8px;}
+  100%   {border-radius: 15px;}
+}

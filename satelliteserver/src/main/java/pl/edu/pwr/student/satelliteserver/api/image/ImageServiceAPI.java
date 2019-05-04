@@ -4,7 +4,7 @@ import pl.edu.pwr.student.satelliteserver.api.position.Position;
 
 public interface ImageServiceAPI {
 
-    byte[] getSatelliteImage();
+    String getSatelliteImage();
 
     ImageDaysWrapper getImageAtPosition(Position position);
 }

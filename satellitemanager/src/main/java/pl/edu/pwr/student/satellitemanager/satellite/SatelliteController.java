@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -45,8 +46,8 @@ public class SatelliteController {
         return simulation.calculateTrip(new Position(latitude, longitude));
     }
 
-    @GetMapping(value = "satellite/manager/image/now", produces = MediaType.IMAGE_PNG_VALUE)
-    public @ResponseBody byte[] getCurrentImage(HttpServletResponse response) throws IOException {
+    @GetMapping("satellite/manager/image/now")
+    public String getCurrentImage() throws IOException {
 
 
         return this.service.getCurrentImage();
@@ -56,7 +57,7 @@ public class SatelliteController {
     public @ResponseBody ImageDaysWrapper getImageAtPosition(@RequestParam Double latitude,
                                                              @RequestParam Double longitude,
                                                              HttpServletResponse response)
-                                                             throws IOException, ParseException {
+                                                             throws IOException {
 
         Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
 

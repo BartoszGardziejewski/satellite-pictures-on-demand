@@ -17,8 +17,8 @@ public class ImageController {
 
     private final ImageServiceAPI imageService;
 
-    @GetMapping(value = "satellite/api/image/now", produces = MediaType.IMAGE_PNG_VALUE)
-    public @ResponseBody byte[] getCurrentImage(HttpServletResponse response) throws IOException {
+    @GetMapping(value = "satellite/api/image/now")
+    public String getCurrentImage() throws IOException {
 
         return this.imageService.getSatelliteImage();
     }

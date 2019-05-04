@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /*
 * ZALOZENIA SATELITY:
@@ -34,8 +35,9 @@ public class Simulation {
     long countDays(Date dateTo){
 
         Date today = new Date();
+        long diffInMillies = Math.abs(dateTo.getTime() - today.getTime());
 
-        return dateTo.getTime() - today.getTime();
+        return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
     private static double calculateDistance(Position startingPosition, Position endingPosition){

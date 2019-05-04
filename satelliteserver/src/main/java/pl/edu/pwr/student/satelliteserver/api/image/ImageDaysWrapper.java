@@ -15,5 +15,5 @@ import java.util.Date;
 public class ImageDaysWrapper {
 
     private Date date;
-    private byte[] img;
+    private String img;
 }

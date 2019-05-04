@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         this.badParameters = true;
         this.error_text = 'bad username or password';
       } else if ( error.status === 504 ) {
+        this.badParameters = true;
         this.error_text = 'server is not responding';
       }
     });

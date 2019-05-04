@@ -20,6 +20,13 @@ public class PositionController {
     }
 
     @GetMapping("satellite/api/position")
+    public Date getTimeArrival(@RequestParam Double latitude,
+                               @RequestParam Double longitude){
+
+        return this.positionService.getTimeToArrive(new Position(latitude, longitude));
+    }
+
+    @PostMapping("satellite/api/position")
     @ResponseBody
     public Date setCurrentPosition(@RequestParam Double latitude,
                                    @RequestParam Double longitude,

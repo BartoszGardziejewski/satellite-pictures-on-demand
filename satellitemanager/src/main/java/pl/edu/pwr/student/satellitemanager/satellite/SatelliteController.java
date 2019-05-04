@@ -2,9 +2,7 @@ package pl.edu.pwr.student.satellitemanager.satellite;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,12 +30,19 @@ public class SatelliteController {
 
     @GetMapping("satellite/manager/position")
     public Date setCurrentPosition(@RequestParam Double latitude,
-                                   @RequestParam Double longitude) throws ParseException {
+                                   @RequestParam Double longitude) {
 
         Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
         simulation.simulateTrip(latitude, longitude);
 
         return arrDate;
+    }
+
+    @GetMapping("satellite/manager/position/time")
+    public Date getTimeArrival(@RequestParam Double latitude,
+                               @RequestParam Double longitude){
+
+        return simulation.calculateTrip(new Position(latitude, longitude));
     }
 
     @GetMapping(value = "satellite/manager/image/now", produces = MediaType.IMAGE_PNG_VALUE)

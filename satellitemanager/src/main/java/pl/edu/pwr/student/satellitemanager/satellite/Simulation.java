@@ -2,9 +2,17 @@ package pl.edu.pwr.student.satellitemanager.satellite;
 
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+
+/*
+* ZALOZENIA SATELITY:
+*
+* - stała wysokosc (altitude) = 35786km
+* - stala predkosc liniowa = 11300km
+* - jedna godzina ruchu trwa jedną sekunde
+*
+* */
 
 @Component
 public class Simulation {
@@ -12,7 +20,7 @@ public class Simulation {
     private final double speed = 11300.0;
     private final double height = 35786.0;
 
-    Date calculateTrip(Position newPosition) throws ParseException {
+    Date calculateTrip(Position newPosition) {
 
         double time = calculateDistance(Init.currentPosition, newPosition) / speed; // h
 
@@ -41,12 +49,12 @@ public class Simulation {
                 + Math.cos(Math.toRadians(startingPosition.getLatitude())) * Math.cos(Math.toRadians(endingPosition.getLatitude()))
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000; // convert to meters
+        double distance = R * c * 1000;
 
 
         distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
-        return Math.sqrt(distance);
+        return Math.sqrt(distance); // km
 
     }
 
@@ -61,29 +69,32 @@ public class Simulation {
                 + Math.cos(Math.toRadians(startingAltitude)) * Math.cos(Math.toRadians(endingAltitude))
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000; // convert to meters
+        double distance = R * c * 1000;
 
         double height = endingAltitude - startingAltitude;
 
         distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
-        return Math.sqrt(distance);
+        return Math.sqrt(distance); // km
     }
 
     void simulateTrip(Double latitude, Double longitude) {
 
         final double[] startingDistance = {calculateDistance(Init.currentPosition, new Position(latitude, longitude))};
+
         double startingX = Init.currentPosition.getLatitude();
         double startingY = Init.currentPosition.getLongitude();
 
+        double startDistance = startingDistance[0];
+
         Thread t = new Thread(() -> {
 
-            while (!Thread.interrupted()){
+            while (true){
 
                 startingDistance[0] -= speed;
 
-                Init.currentPosition.setLatitude(Init.currentPosition.getLatitude() + distanceX(startingDistance[0], startingX, latitude));
-                Init.currentPosition.setLongitude(Init.currentPosition.getLongitude() - distanceX(startingDistance[0], startingY, longitude));
+                Init.currentPosition.setLatitude(Init.currentPosition.getLatitude() + distanceXY(startDistance, startingX, latitude));
+                Init.currentPosition.setLongitude(Init.currentPosition.getLongitude() + distanceXY(startDistance, startingY, longitude));
 
                 if(startingDistance[0] <= 0){
 
@@ -106,13 +117,12 @@ public class Simulation {
 
     }
 
-    private Double distanceX(double distance, double startingX, double endingX) {
+    private Double distanceXY(double distance, double startingXY, double endingXY) {
 
-        double s = speed;
-        double rate = s / distance;
-        double x_distance = endingX - startingX;
+        double rate = speed / distance;
+        double x_distance = endingXY - startingXY;
 
-        return startingX + x_distance * rate;
+        return x_distance * rate;
     }
 
 }

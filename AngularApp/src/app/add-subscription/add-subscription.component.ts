@@ -18,7 +18,7 @@ export class AddSubscriptionComponent implements OnInit {
     const subscription: Subscription = {
       id: null,
       name:  formData.value.name,
-      coordinates: formData.value.coordinates,
+      coordinates: formData.value.latitude + ';' + formData.value.longitude,
       periodicity: formData.value.periodicity,
       end_date: formData.value.end_date
     };

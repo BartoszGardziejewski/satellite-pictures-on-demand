@@ -30,24 +30,24 @@ public class SatelliteController {
     }
 
     @GetMapping("satellite/manager/position")
-    public Date setCurrentPosition(@RequestParam Double latitude,
+    public DateModel setCurrentPosition(@RequestParam Double latitude,
                                    @RequestParam Double longitude) {
 
-        Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
+        DateModel arrDate = simulation.calculateTrip(new Position(latitude, longitude));
         simulation.simulateTrip(latitude, longitude);
 
         return arrDate;
     }
 
     @GetMapping("satellite/manager/position/time")
-    public Date getTimeArrival(@RequestParam Double latitude,
+    public DateModel getTimeArrival(@RequestParam Double latitude,
                                @RequestParam Double longitude){
 
         return simulation.calculateTrip(new Position(latitude, longitude));
     }
 
     @GetMapping("satellite/manager/image/now")
-    public String getCurrentImage() throws IOException {
+    public @ResponseBody ImageDaysWrapper getCurrentImage() throws IOException {
 
 
         return this.service.getCurrentImage();
@@ -59,13 +59,13 @@ public class SatelliteController {
                                                              HttpServletResponse response)
                                                              throws IOException {
 
-        Date arrDate = simulation.calculateTrip(new Position(latitude, longitude));
+        DateModel arrDate = simulation.calculateTrip(new Position(latitude, longitude));
 
-        if(simulation.countDays(arrDate) < 1){
+        if(simulation.countDays(arrDate.getDate()) < 1){
             return new ImageDaysWrapper(new Date(), this.service.getImageAtPosition(latitude, longitude));
         }
         else
             this.simulation.simulateTrip(latitude, longitude);
-            return new ImageDaysWrapper(arrDate, null);
+            return new ImageDaysWrapper(arrDate.getDate(), null);
     }
 }

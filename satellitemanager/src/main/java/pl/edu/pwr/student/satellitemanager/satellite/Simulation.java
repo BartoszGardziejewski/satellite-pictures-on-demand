@@ -21,7 +21,7 @@ public class Simulation {
     private final double speed = 11300.0;
     private final double height = 35786.0;
 
-    Date calculateTrip(Position newPosition) {
+    DateModel calculateTrip(Position newPosition) {
 
         double time = calculateDistance(Init.currentPosition, newPosition) / speed; // h
 
@@ -29,7 +29,7 @@ public class Simulation {
         c.setTime(new Date());
         c.add(Calendar.HOUR, (int) time);
 
-        return c.getTime(); //arrivalDate;
+        return new DateModel(c.getTime()); //arrivalDate;
     }
 
     long countDays(Date dateTo){

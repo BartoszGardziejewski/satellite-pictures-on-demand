@@ -16,7 +16,7 @@ public class ImageController {
     private final ImageServiceAPI imageService;
 
     @GetMapping(value = "satellite/api/image/now")
-    public String getCurrentImage() {
+    public ImageDaysWrapper getCurrentImage() {
 
         return this.imageService.getSatelliteImage();
     }

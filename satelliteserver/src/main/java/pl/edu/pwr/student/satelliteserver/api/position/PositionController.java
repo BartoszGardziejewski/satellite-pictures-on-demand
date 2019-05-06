@@ -20,7 +20,7 @@ public class PositionController {
     }
 
     @GetMapping("satellite/api/position")
-    public Date getTimeArrival(@RequestParam Double latitude,
+    public DateModel getTimeArrival(@RequestParam Double latitude,
                                @RequestParam Double longitude){
 
         return this.positionService.getTimeToArrive(new Position(latitude, longitude));
@@ -28,7 +28,7 @@ public class PositionController {
 
     @PostMapping("satellite/api/position")
     @ResponseBody
-    public Date setCurrentPosition(@RequestParam Double latitude,
+    public DateModel setCurrentPosition(@RequestParam Double latitude,
                                    @RequestParam Double longitude,
                                    HttpServletResponse response){
 

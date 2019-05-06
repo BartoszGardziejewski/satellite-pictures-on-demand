@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
 @org.springframework.stereotype.Service
@@ -14,13 +15,13 @@ public class Service {
 
     private final String bing_api_key = "AmafUcgdnpmARanaKddoI44s8GCD6fPSI6eh_Sk5fvKQ3lxCnclNJwjOmSVlAyIh";
 
-    String getCurrentImage() throws IOException {
+    ImageDaysWrapper getCurrentImage() throws IOException {
 
         byte[] img = downloadImage(Init.currentPosition);
 
         Map uploadResult = convertToCloudinary(img);
 
-        return uploadResult.get("url").toString();
+        return new ImageDaysWrapper(new Date(), uploadResult.get("url").toString());
     }
 
     String getImageAtPosition(Double latitude, Double longitude) throws IOException {

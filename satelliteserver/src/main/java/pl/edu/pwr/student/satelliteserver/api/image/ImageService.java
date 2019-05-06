@@ -8,13 +8,13 @@ import pl.edu.pwr.student.satelliteserver.api.position.Position;
 public class ImageService implements ImageServiceAPI {
 
     @Override
-    public String getSatelliteImage() {
+    public ImageDaysWrapper getSatelliteImage() {
 
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://127.0.0.1:9009/satellite/manager/image/now";
 
-        return restTemplate.getForObject(url, String.class);
+        return restTemplate.getForObject(url, ImageDaysWrapper.class);
     }
 
     @Override

@@ -17,5 +17,16 @@ class Photo(models.Model):
 
     image_file_ref_path = models.CharField(
         max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    lat = models.CharField(
+        max_length=3,
+        null=False,
+    )
+
+    lon = models.CharField(
+        max_length=3,
         null=False,
     )

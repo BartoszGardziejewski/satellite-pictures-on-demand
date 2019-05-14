@@ -4,7 +4,13 @@
   <form class="customForm" #formData = "ngForm" (ngSubmit) = "onClickSubmit(formData)" >
     <input class="textInput" type = "text" name = "name" placeholder = "subscription name" ngModel>
     <br/>
-    <input class="textInput" type = "text" name = "coordinates" placeholder = "coordinates" ngModel>
+    <p>coordination</p>
+    <br/>
+    <input class="textInput" type = "text" name = "latitude" placeholder = "latitude ( -90 to 90 )" ngModel>
+    <br/>
+    <input class="textInput" type = "text" name = "longitude" placeholder = "longitude ( -180 to 180 )" ngModel>
+    <br/>
+    <p>end date</p>
     <br/>
     <input class="textInput" type = "text" name = "end_date" placeholder = "end date (yyyy-mm-dd) " ngModel>
     <br/>

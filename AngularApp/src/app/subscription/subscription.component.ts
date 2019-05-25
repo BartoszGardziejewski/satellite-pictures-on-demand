@@ -21,7 +21,7 @@ export class SubscriptionComponent implements OnInit {
   setSubscription(id) {
     console.log(id);
     this.dataService.getSubscription(id).subscribe(data => {
-      console.log( JSON.stringify(data) );
+      console.log('subscription: ' + JSON.stringify(data) );
       this.subscription = data;
 
       this.dataService.getPhotos(this.subscription.id).subscribe(photos => {

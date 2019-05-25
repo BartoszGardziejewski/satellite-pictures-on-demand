@@ -3,6 +3,7 @@
   position: relative;
 
   font-size: 25px;
+  width: 15%;
 
   left: 50px;
   top: 20px;
@@ -12,7 +13,34 @@
 .backButton:hover{
   cursor: pointer;
 
-  padding: 4px 6px;
-  border-radius: 15px;
-  border-left: #222222 3px solid;
+  padding: 3px 9px;
+  border-bottom: #222222 2px solid;
+}
+
+.subscriptionDataContainer{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-rows: 90% 10%;
+}
+
+.formContainer{
+  display: grid;
+  grid-gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.gridInput{
+  padding: 0;
+  margin: 5px;
+  height: 100%;
+}
+
+.mapContainer{
+  height: 70vh;
+  display: grid;
+  grid-auto-rows: 95% 5%;
+  padding: 0;
+  margin: 0;
+  background: #222222;
 }

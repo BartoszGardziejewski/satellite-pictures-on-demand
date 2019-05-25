@@ -8,6 +8,7 @@ import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
 import {SubscriptionComponent} from './subscription/subscription.component';
 import {AddSubscriptionComponent} from './add-subscription/add-subscription.component';
 import {AccountComponent} from './account/account.component';
+import {WorldMapComponent} from './world-map/world-map.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'subscriptions', component: SubscriptionsComponent},
   { path: 'account', component: AccountComponent},
   { path: 'subscription/:id', component: SubscriptionComponent},
-  { path: 'addSubscription', component: AddSubscriptionComponent}
+  { path: 'addSubscription', component: AddSubscriptionComponent},
+  { path: 'map', component: WorldMapComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import { SubsciptionThumbnailComponent } from './subsciption-thumbnail/subsciption-thumbnail.component';
 import { AddSubscriptionComponent } from './add-subscription/add-subscription.component';
 import { AccountComponent } from './account/account.component';
+import { WorldMapComponent } from './world-map/world-map.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,17 @@ import { AccountComponent } from './account/account.component';
     SubscriptionComponent,
     SubsciptionThumbnailComponent,
     AddSubscriptionComponent,
-    AccountComponent
+    AccountComponent,
+    WorldMapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'CHAVES_GOOGLE_MAPS'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

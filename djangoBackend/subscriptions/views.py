@@ -53,17 +53,36 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             if 'img' not in photo_from_satellite:
                 raise Exception
         except:
-            return JsonResponse({"message": "Satellite not responding."})
+            photo_from_satellite = None
+            # return JsonResponse({"message": "Satellite not responding."})
 
-        if current_photo:
-            if photo_from_satellite['img']:
-                current_photo.image_file_ref_path = photo_from_satellite['img']
+        if photo_from_satellite:
+            if current_photo:
+                if photo_from_satellite['img']:
+                    current_photo.image_file_ref_path = photo_from_satellite['img']
+                current_photo.date = parse(photo_from_satellite['date'])
+            else:
+                current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
+                if photo_from_satellite['img']:
+                    current_photo.image_file_ref_path = photo_from_satellite['img']
+                current_photo.date = parse(photo_from_satellite['date'])
         else:
-            current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
-            if photo_from_satellite['img']:
-                current_photo.image_file_ref_path = photo_from_satellite['img']
-        current_photo.date = parse(photo_from_satellite['date'])
+            if current_photo:
+                pass
+            else:
+                current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
         current_photo.save()
+
+        # if current_photo and photo_from_satellite:
+        #     if photo_from_satellite['img']:
+        #         current_photo.image_file_ref_path = photo_from_satellite['img']
+        #         current_photo.date = parse(photo_from_satellite['date'])
+        # else:
+        #     current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
+        #     if photo_from_satellite and photo_from_satellite['img']:
+        #         current_photo.image_file_ref_path = photo_from_satellite['img']
+        #         current_photo.date = parse(photo_from_satellite['date'])
+        # current_photo.save()
 
         serializer = SubscriptionSerializerDetail(queryset, many=False)
         return JsonResponse(serializer.data, safe=False)
@@ -112,8 +131,4 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             }, safe=False)
         except Exception as e:
             print(e)
-            return JsonResponse({
-                'subscription': sub_serializer.data,
-                'photo': None,
-                'error': 'Photo cannot be fetched from satellite.',
-            })
+            return JsonResponse(sub_serializer.data, safe=False)

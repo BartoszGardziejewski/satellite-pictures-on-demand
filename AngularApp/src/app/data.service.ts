@@ -28,6 +28,8 @@ export class DataService {
   //  urlBase = 'http://localhost:5000/api/v1/';
   urlBase = '/api/v1/';
 
+  stashedSubscription: Subscription;
+
 
   constructor(private http: HttpClient) {
     this.token = '';
@@ -150,6 +152,14 @@ export class DataService {
     });
 
     return this.http.get(this.urlBase + 'subscriptions/' + subscriptionId + '/photos/', { headers: headers });
+  }
+
+  stashSubscription(subscription) {
+    this.stashedSubscription = subscription;
+  }
+
+  getSubscriptionFromStash() {
+    return this.stashedSubscription;
   }
 
 }

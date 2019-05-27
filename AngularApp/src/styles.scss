@@ -12,6 +12,9 @@ a{
 }
 
 .mainBackground{
+  max-height: 80%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   align-content: center;
   text-align: center;
   background-color: rgba(250,250,250,0.9);

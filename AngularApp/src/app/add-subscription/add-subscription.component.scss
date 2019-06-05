@@ -1,26 +1,11 @@
-.backButton{
-  display: flex;
-  position: relative;
-
-  font-size: 25px;
-  width: 15%;
-
-  left: 50px;
-  top: 20px;
-
-  padding: 4px 9px;
-}
-.backButton:hover{
-  cursor: pointer;
-
-  padding: 3px 9px;
-  border-bottom: #222222 2px solid;
+label{
+  font-size: 14px;
 }
 
 .subscriptionDataContainer{
   display: grid;
   grid-gap: 20px;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 85% 15%;
 }
 
 .formContainer{

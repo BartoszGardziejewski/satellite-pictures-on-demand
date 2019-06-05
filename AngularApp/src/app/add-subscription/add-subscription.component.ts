@@ -50,6 +50,9 @@ export class AddSubscriptionComponent implements OnInit {
         },
         error => {
         });
+
+    this.dataService.removeSubscriptionFromStash();
+    this.mapService.removeMarker();
   }
 
   backToSubscription() {

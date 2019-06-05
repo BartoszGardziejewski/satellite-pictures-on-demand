@@ -16,26 +16,7 @@ ul{
   }
 }
 
-.backButton{
-  display: flex;
-  position: relative;
-
-  font-size: 25px;
-
-  left: 50px;
-  top: 20px;
-
-  padding: 4px 9px;
-}
-.backButton:hover{
-  cursor: pointer;
-
-  padding: 4px 6px;
-  border-radius: 15px;
-  border-left: #222222 3px solid;
-}
-
 .contentContainer{
   overflow-y: scroll;
-  max-height: 65vh;
+  max-height: 60vh;
 }

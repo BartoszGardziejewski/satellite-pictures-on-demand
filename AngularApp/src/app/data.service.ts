@@ -22,7 +22,6 @@ export interface Subscriptions {
 })
 export class DataService {
 
-  token: string;
   username: string;
   //  urlBase = 'http://localhost:8000/';
   //  urlBase = 'http://localhost:5000/api/v1/';
@@ -32,27 +31,26 @@ export class DataService {
 
 
   constructor(private http: HttpClient) {
-    this.token = '';
   }
 
   getURLbase() {
     return this.urlBase;
   }
 
-  getToke() {
-    if ( Cookie.get('csrftoken') === null || Cookie.get('csrftoken') === undefined) {
-      return  '';
+  isTokenValid() {
+    if ( ( Cookie.get('csrftoken') === null || Cookie.get('csrftoken') === undefined)
+      || ( Cookie.get('UserToken') === null || Cookie.get('UserToken') === undefined)) {
+      return false;
     }
-
-    return Cookie.get('csrftoken');
+    return true;
   }
 
   setToken(token) {
-    this.token = token;
+    Cookie.set('UserToken', token);
   }
 
   logout() {
-
+    Cookie.delete('UserToken');
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken') });
     return this.http.post(this.urlBase + 'auth/logout/', {}, {headers: headers} );
@@ -65,7 +63,7 @@ export class DataService {
   getSubscriptions() {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
-      'Authorization': 'Token ' + this.token
+      'Authorization': 'Token ' + Cookie.get('UserToken')
     });
 
     return this.http.get<Subscriptions>(this.urlBase + 'subscriptions', { headers: headers });
@@ -74,7 +72,7 @@ export class DataService {
   getSubscription(id) {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
-      'Authorization': 'Token ' + this.token
+      'Authorization': 'Token ' + Cookie.get('UserToken')
     });
 
     return this.http.get<Subscription>(this.urlBase + 'subscriptions/' + id, { headers: headers });
@@ -83,11 +81,11 @@ export class DataService {
   addSubscription(subscription) {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
-      'Authorization': 'Token ' + this.token
+      'Authorization': 'Token ' + Cookie.get('UserToken')
     });
 
     let params = new HttpParams();
-    params = params.append('user_id', this.token);
+    params = params.append('user_id', Cookie.get('UserToken'));
     params = params.append('name', subscription.name);
     params = params.append('coordinates', subscription.coordinates);
     params = params.append('periodicity', subscription.periodicity);
@@ -105,7 +103,7 @@ export class DataService {
   removeSubscription(id) {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
-      'Authorization': 'Token ' + this.token
+      'Authorization': 'Token ' + Cookie.get('UserToken')
     });
     return this.http.delete(this.urlBase + 'subscriptions/' + id + '/', {headers: headers});
   }
@@ -132,10 +130,10 @@ export class DataService {
       {} );
   }
 
-  changePassword(newPassword,oldPassword) {
+  changePassword(newPassword, oldPassword) {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
-      'Authorization': 'Token ' + this.token
+      'Authorization': 'Token ' + Cookie.get('UserToken')
     });
 
     return this.http.post(this.urlBase + 'auth/password/change/', {
@@ -148,7 +146,7 @@ export class DataService {
   getPhotos(subscriptionId) {
     const headers = new HttpHeaders({
       'X-CSRFTOKEN': Cookie.get('csrftoken'),
-      'Authorization': 'Token ' + this.token
+      'Authorization': 'Token ' + Cookie.get('UserToken')
     });
 
     return this.http.get(this.urlBase + 'subscriptions/' + subscriptionId + '/photos/', { headers: headers });
@@ -162,4 +160,7 @@ export class DataService {
     return this.stashedSubscription;
   }
 
+  removeSubscriptionFromStash() {
+    this.stashedSubscription = null;
+  }
 }

@@ -6,8 +6,8 @@
   margin: 5px;
   padding: 10px;
 
-  border-left: #44FFFF 5px solid;
-  border-right: #44FFFF 5px solid;
+  border-left: #22DDAA 5px solid;
+  border-right: #22DDAA 5px solid;
   border-radius: 20px;
 
   display: grid;
@@ -17,8 +17,13 @@
 .subscriptionFrame:hover {
   cursor: pointer;
 
-  border-left: #88FFFF 6px solid;
-  border-right: #88FFFF 6px solid;
+  margin: 4px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-top: #44DDBB 3px solid;
+  border-bottom: #44DDBB 3px solid;
+  border-left: #44DDBB 6px solid;
+  border-right: #44DDBB 6px solid;
 
 }
 

@@ -17,4 +17,8 @@ export class MapService {
     this.marker = {'lng': lng , 'lat': lat};
   }
 
+  removeMarker() {
+    this.marker = {'lng' : 0, 'lat' : 0};
+  }
+
 }

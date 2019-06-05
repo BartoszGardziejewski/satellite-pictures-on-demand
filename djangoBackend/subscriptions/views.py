@@ -24,7 +24,7 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=True)
     def photos(self, request, pk=None):
-        queryset = Photo.objects.filter(subscription_id=pk)
+        queryset = Photo.objects.filter(subscription_id=pk).exclude(image_file_ref_path=None)
         serializer = PhotoSerializer(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -38,51 +38,6 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
             queryset = Subscription.objects.filter(user_id=request.user, pk=pk)[0]
         except IndexError:
             return JsonResponse({"message": "This is not your subscription."}, status=status.HTTP_401_UNAUTHORIZED)
-
-        lat, lon = queryset.coordinates.split(';')
-        # print(lat, lon)
-        # current_photo = get_photo(lat, lon)
-
-        try:
-            current_photo = Photo.objects.filter(subscription_id=queryset.id, lat=lat, lon=lon)[0]
-        except:
-            current_photo = None
-
-        try:
-            photo_from_satellite = get_photo(lat, lon)
-            if 'img' not in photo_from_satellite:
-                raise Exception
-        except:
-            photo_from_satellite = None
-            # return JsonResponse({"message": "Satellite not responding."})
-
-        if photo_from_satellite:
-            if current_photo:
-                if photo_from_satellite['img']:
-                    current_photo.image_file_ref_path = photo_from_satellite['img']
-                current_photo.date = parse(photo_from_satellite['date'])
-            else:
-                current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
-                if photo_from_satellite['img']:
-                    current_photo.image_file_ref_path = photo_from_satellite['img']
-                current_photo.date = parse(photo_from_satellite['date'])
-        else:
-            if current_photo:
-                pass
-            else:
-                current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
-        current_photo.save()
-
-        # if current_photo and photo_from_satellite:
-        #     if photo_from_satellite['img']:
-        #         current_photo.image_file_ref_path = photo_from_satellite['img']
-        #         current_photo.date = parse(photo_from_satellite['date'])
-        # else:
-        #     current_photo = Photo.objects.create(lat=lat, lon=lon, subscription_id=queryset)
-        #     if photo_from_satellite and photo_from_satellite['img']:
-        #         current_photo.image_file_ref_path = photo_from_satellite['img']
-        #         current_photo.date = parse(photo_from_satellite['date'])
-        # current_photo.save()
 
         serializer = SubscriptionSerializerDetail(queryset, many=False)
         return JsonResponse(serializer.data, safe=False)

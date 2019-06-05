@@ -15,7 +15,6 @@ def post(path, body):
 
 def current_location():
     response = get('/position/now')
-    print('response', response.json())
     return response.json()
 
 
@@ -26,5 +25,4 @@ def location_at(lat, lon):
 
 def get_photo(lat, lon):
     response = get('/image?latitude={}&longitude={}'.format(lat, lon))
-    print('photo', response.json())
     return response.json()

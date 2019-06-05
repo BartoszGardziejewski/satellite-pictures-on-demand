@@ -16,3 +16,11 @@ this application will allow client to subscribe in order to receive satellite pi
 # Backend documentation
 
  - To see full backend documentation endpoints visit `/docs` after run the application.
+
+#### Steps to run backend:
+- `pip install -r requirements`
+- `python manage.py migrate`
+###### In one console window run satellite photo downloader:
+- `python manage.py satellite`
+###### In another run application on port 5000:
+- `python manage.py runserver 5000`.
